@@ -5,19 +5,10 @@ from oauth2client.client import Credentials # Needed for type hinting/usage in c
 from googleapiclient.discovery import build
 from googleapiclient import errors as google_api_errors
 import httplib2
+import os
 
-# Path to credentials.json which should contain a JSON document such as:
-#   {
-#     "web": {
-#       "client_id": "[[YOUR_CLIENT_ID]]",
-#       "client_secret": "[[YOUR_CLIENT_SECRET]]",
-#       "redirect_uris": [],
-#       "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-#       "token_uri": "https://accounts.google.com/o/oauth2/token"
-#     }
-#   }
-CLIENTSECRETS_LOCATION = 'credentials.json'
-REDIRECT_URI = 'http://localhost:8080/'
+CLIENTSECRETS_LOCATION = os.getenv("clientscrets_location")
+REDIRECT_URI = os.getenv("redirect_uri")
 SCOPES = [
     'https://www.googleapis.com/auth/gmail.readonly',
     'https://www.googleapis.com/auth/userinfo.email',

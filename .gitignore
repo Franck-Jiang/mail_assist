@@ -1,1 +1,6 @@
 *.env
+credentials.json
+*.pyc
+.vscode
+.venv
+__pycache__

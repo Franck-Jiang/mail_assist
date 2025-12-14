@@ -11,13 +11,12 @@ def save_creds(db: Session, username, json_string: str):
         db.flush()
         db.refresh(new_user)
     except IntegrityError as e:
-        print(f"Can't add {username}")
+        print(f"Can't add {username}") # Use logging
         db.rollback()
         return e
     return new_user
 
 def load_creds(db: Session, username):
     stmt = select(Credentials).where(Credentials.name == username)
-    print(stmt)
     result = db.execute(stmt).fetchone()
     return result
